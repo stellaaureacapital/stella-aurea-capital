@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stella Aurea Capital | Gestão de Investimentos</title>
+
+<meta name="description" content="Assessoria e estratégia profissional para construção de patrimônio.">
+
+<link rel="icon" href="logo.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+gold: '#C9A246',
+bg: '#F5F4F1',
+dark: '#0F0F0F'
+}}}}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+html { scroll-behavior: smooth; }
+</style>
+</head>
+
+<body class="bg-bg text-dark">
+
+<!-- NAVBAR -->
+<header class="fixed w-full top-0 bg-white/80 backdrop-blur border-b z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+<div class="flex items-center gap-3">
+<div class="bg-white p-1.5 rounded-lg shadow">
+<img src="logo.png" class="h-8">
+</div>
+<span class="font-semibold">Stella Aurea Capital</span>
+</div>
+
+<nav class="hidden md:flex gap-8 text-sm font-medium">
+<a href="#">Home</a>
+<a href="#sobre">Sobre</a>
+<a href="#solucoes">Soluções</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#simulador">Simulador</a>
+<a href="#blog">Conteúdo</a>
+<a href="#contato">Contato</a>
+</nav>
+
+<button onclick="toggleMenu()" class="md:hidden text-xl">☰</button>
+
+</div>
+
+<div id="menu" class="hidden px-6 pb-4 bg-white">
+<a href="#" class="block py-2">Home</a>
+<a href="#sobre" class="block py-2">Sobre</a>
+<a href="#solucoes" class="block py-2">Soluções</a>
+<a href="#dashboard" class="block py-2">Dashboard</a>
+<a href="#simulador" class="block py-2">Simulador</a>
+<a href="#blog" class="block py-2">Conteúdo</a>
+<a href="#contato" class="block py-2">Contato</a>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="pt-40 pb-28 text-center px-6">
+
+<div class="flex justify-center mb-8">
+<div class="bg-white p-5 rounded-2xl shadow-lg">
+<img src="logo.png" class="w-32">
+</div>
+</div>
+
+<h1 class="text-5xl md:text-6xl font-bold mb-6">
+Construa patrimônio com inteligência estratégica
+</h1>
+
+<p class="text-gray-600 max-w-xl mx-auto mb-10 text-lg">
+Gestão de investimentos, análise profissional e visão de longo prazo para crescimento consistente.
+</p>
+
+<div class="flex justify-center gap-4 flex-wrap">
+<button class="bg-gold text-white px-8 py-3 rounded-full hover:scale-105 transition">
+Abrir conta
+</button>
+
+<button class="border px-8 py-3 rounded-full hover:bg-black hover:text-white transition">
+Falar com especialista
+</button>
+</div>
+
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="py-20 bg-white text-center px-6">
+<h2 class="text-3xl mb-6 font-semibold">Sobre a Stella Aurea</h2>
+
+<p class="max-w-3xl mx-auto text-gray-600">
+A Stella Aurea Capital nasce com o objetivo de oferecer inteligência financeira,
+estratégia patrimonial e visão de longo prazo para investidores que buscam
+crescimento consistente com segurança e eficiência.
+</p>
+</section>
+
+<!-- SOLUÇÕES -->
+<section id="solucoes" class="py-20 px-6">
+
+<h2 class="text-3xl text-center mb-12">Soluções financeiras</h2>
+
+<div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+
+<div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+Ações
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+Fundos
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+FIIs
+</div>
+
+<div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+Previdência
+</div>
+
+</div>
+
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="py-20 bg-white px-6 text-center">
+
+<h2 class="text-3xl mb-10">Visão da carteira</h2>
+
+<div class="max-w-4xl mx-auto">
+<canvas id="grafico"></canvas>
+</div>
+
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulador" class="py-20 text-center">
+
+<h2 class="text-3xl mb-6">Simulador</h2>
+
+<div class="max-w-md mx-auto space-y-4">
+
+<input id="valor" placeholder="Valor inicial" class="w-full p-4 border rounded">
+<input id="tempo" placeholder="Anos" class="w-full p-4 border rounded">
+<input id="taxa" placeholder="Taxa anual (%)" class="w-full p-4 border rounded">
+
+<button onclick="simular()" class="bg-gold text-white px-6 py-3 rounded w-full">
+Simular
+</button>
+
+<p id="resultado"></p>
+
+</div>
+
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="py-20 bg-white px-6">
+
+<h2 class="text-3xl text-center mb-10">Conteúdo estratégico</h2>
+
+<div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+<div class="bg-bg p-6 rounded shadow">
+<h3 class="font-semibold">Como investir melhor</h3>
+<p class="text-gray-500 text-sm">Estratégias práticas para crescimento patrimonial.</p>
+</div>
+
+<div class="bg-bg p-6 rounded shadow">
+<h3 class="font-semibold">Renda passiva</h3>
+<p class="text-gray-500 text-sm">Construção inteligente de renda recorrente.</p>
+</div>
+
+<div class="bg-bg p-6 rounded shadow">
+<h3 class="font-semibold">Alocação estratégica</h3>
+<p class="text-gray-500 text-sm">Equilíbrio entre risco e retorno.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- LEADS -->
+<section class="py-20 text-center">
+
+<h2 class="text-3xl mb-6">Receba conteúdos exclusivos</h2>
+
+<input placeholder="Seu email" class="p-4 border rounded w-80">
+
+<button class="bg-gold text-white px-6 py-3 rounded ml-2">
+Cadastrar
+</button>
+
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="py-20 bg-white text-center px-6">
+
+<h2 class="text-3xl mb-6">Fale com um especialista</h2>
+
+<form class="max-w-xl mx-auto space-y-4">
+
+<input type="text" placeholder="Nome" class="w-full p-4 border rounded">
+<input type="email" placeholder="Email" class="w-full p-4 border rounded">
+<textarea placeholder="Mensagem" class="w-full p-4 border rounded"></textarea>
+
+<button class="bg-gold text-white px-8 py-3 rounded w-full">
+Enviar mensagem
+</button>
+
+</form>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-8 border-t text-sm text-gray-500">
+© 2026 Stella Aurea Capital
+</footer>
+
+<!-- WHATS -->
+<a href="https://wa.me/SEUNUMERO" target="_blank"
+class="fixed bottom-6 right-6 bg-gold text-white px-5 py-3 rounded-full shadow-lg">
+WhatsApp
+</a>
+
+<script>
+
+function toggleMenu(){
+document.getElementById('menu').classList.toggle('hidden');
+}
+
+function simular(){
+let v = parseFloat(valor.value);
+let t = parseFloat(tempo.value);
+let taxa = parseFloat(taxa.value)/100;
+
+let total = v * Math.pow((1+taxa), t);
+
+resultado.innerText = "R$ " + total.toLocaleString('pt-BR');
+}
+
+new Chart(document.getElementById('grafico'), {
+type: 'line',
+data: {
+labels: ['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5'],
+datasets: [{
+label: 'Crescimento',
+data: [10000,15000,23000,35000,50000]
+}]
+}
+});
+
+</script>
+
+</body>
+</html>
