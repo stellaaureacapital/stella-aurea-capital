@@ -1,0 +1,1 @@
+# stella-aurea-capital
